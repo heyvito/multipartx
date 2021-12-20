@@ -76,7 +76,7 @@ func (m *Multipart) AddFile(fieldName, fileName string, reader io.Reader) {
 // field name, filename, content-type and contents from an io.Reader.
 func (m *Multipart) AddFileContentType(fieldName, fileName, contentType string, reader io.Reader) {
 	m.ensureBoundary()
-	val := []byte(rn + "--" + m.boundary + rn + rn)
+	val := []byte(rn + "--" + m.boundary + rn)
 	val = append(val, []byte(fileHeader(fieldName, fileName, contentType)+rn+rn)...)
 	m.fields = append(m.fields,
 		io.MultiReader(
